@@ -16,7 +16,7 @@
 
 <script setup>
 const route = useRoute()
-const tabs = [
+const tabs = ref([
     {
         name: "主頁",
         inactive: "material-symbols:home-outline-rounded",
@@ -35,7 +35,7 @@ const tabs = [
         active: "material-symbols:person-rounded",
         to: "/me"
     }
-]
+])
 </script>
 
 <style scoped>
