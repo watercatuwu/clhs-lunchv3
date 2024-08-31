@@ -8,6 +8,7 @@
             <!-- 右側區域 -->
             <div>
                 <MazDropdown
+                class="text-red-500"
                 :items="dropdowns"
                 trigger="click"
                 position="bottom right"
@@ -16,7 +17,7 @@
                     <MazAvatar
                     clickable
                     no-clickable-icon
-                    src="https://api.dicebear.com/7.x/big-smile/svg?backgroundColor=1d90ff&scale=80"
+                    src="https://api.dicebear.com/9.x/identicon/svg"
                     tabindex="-1"
                     />
                 </template>
@@ -29,20 +30,8 @@
 <script setup>
 const dropdowns = [
     {
-      label: 'Action',
+      label: '登出',
       action: () => toast.success('CLICKED'),
-      additionnalData: 'https://loremflickr.com/240/200',
-    },
-    {
-      label: 'Link (href)',
-      href: 'https://www.google.com',
-      target: '_blank',
-      additionnalData: 'https://loremflickr.com/340/300',
-    },
-    {
-      label: 'Router Link',
-      to: { name: 'index' },
-      additionnalData: 'https://loremflickr.com/440/400',
-    },
+    }
 ]
 </script>

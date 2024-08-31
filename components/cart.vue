@@ -6,10 +6,10 @@
           <div class="flex flex-row justify-between items-center">
             <div class="flex flex-row items-center gap-2">
               <MazBadge size="1.25rem" rounded-size="xl">{{ cartStore.totalItems }}</MazBadge>
-              <p class="text-zinc-400 text-lg">總計: {{ cartStore.totalPrice }} 元</p>
+              <p class="text-zinc-400 text-lg">總價: {{ cartStore.totalPrice }} 元</p>
             </div>
             <div class="flex items-center gap-2">
-              <MazBtn color="danger" fab @click="cartStore.clearCart">
+              <MazBtn color="danger" fab @click="cleanCart">
                 <template #left-icon>
                   <Icon name="material-symbols:shopping-cart-off-rounded" size="1.25rem" />
                 </template>
@@ -31,6 +31,9 @@
 
 <script setup>
 const cartStore = useCartStore()
+function cleanCart(){
+  cartStore.clearCart()
+}
 </script>
 
 <style scoped>

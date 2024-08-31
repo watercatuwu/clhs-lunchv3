@@ -40,10 +40,10 @@ const tabs = ref([
 
 <style scoped>
 .router-link-active {
-    @apply text-violet-400 font-bold;
+    @apply text-white font-bold;
 }
 
 .router-link-exact-active {
-    @apply text-violet-400 font-bold;
+    @apply text-white font-bold;
 }
 </style>

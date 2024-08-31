@@ -20,13 +20,6 @@
                         ]"
                         :rows="competitions"
                      >
-                     <template #actions>
-                        <MazBtn fab size="xs" color="danger">
-                            <template #left-icon>
-                                <Icon name="material-symbols:delete-outline-rounded" size="1.25rem" />
-                            </template>
-                        </MazBtn>
-                    </template>
                     </MazTable>
                 </template>
             </MazCard>

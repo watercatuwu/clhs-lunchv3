@@ -2,6 +2,16 @@
 <div>
   <div class="pb-48">
     <div class="container mx-auto md:px-0 px-2 flex flex-col gap-4 overflow-y-auto">
+      <VueDatePicker
+        v-model="dateValue"
+        :format="dateFormat(dateValue)"
+        :enable-time-picker="false"
+        :min-date="DateTime.now().toJSDate()"
+        :max-date="DateTime.local(2024, 9, 8).endOf('week').toJSDate()"
+        :disabled-week-days="[6, 0]"
+        auto-apply
+        dark
+      />
       <h1 class="text-3xl font-bold text-zinc-100 flex items-center gap-2">
         <Icon name="mdi:food-drumstick" />
         簡餐部
@@ -65,6 +75,9 @@
 </template>
 
 <script setup>
+import VueDatePicker from '@vuepic/vue-datepicker';
+import '@vuepic/vue-datepicker/dist/main.css';
+import { DateTime } from 'luxon';
 useHead({
   title: '商店',
   meta: [
@@ -75,11 +88,24 @@ definePageMeta({
   layout: 'mobile'
 });
 const cartStore = useCartStore()
-
-
+const dateValue = ref(new Date())
 const { data, error } = await useFetch('/api/product/2024-09-02');
-console.log(data.value)
 
+function dateFormat(date){
+  const day = date.getDate();
+  const month = date.getMonth() + 1;
+  const year = date.getFullYear();
+
+  return `${year}-${month}-${day}`;
+}
+
+watch(
+  () => dateValue.value,
+  async(newValue) => {
+    data.value = await $fetch('/api/product/' + dateFormat(newValue))
+    cartStore.clearCart()
+  }
+)
 </script>
 
 <style scoped>

@@ -37,7 +37,7 @@
 </template>
 
 <script setup>
-const balenceValue = ref(500)
-const notconfirmed = ref(100)
+const balenceValue = ref(999999999)
+const notconfirmed = ref(0)
 const priceValue = ref(0)
 </script>

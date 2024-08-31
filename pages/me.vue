@@ -24,6 +24,20 @@
             </p>
           </template>
         </MazCard>
+        <div class="flex flex-row gap-2">
+          <MazBtn size="lg" color="info">
+            <template #left-icon>
+                <Icon name="material-symbols:book-2" />
+            </template>
+            使用條款
+          </MazBtn>
+          <MazBtn size="lg" color="info">
+            <template #left-icon>
+                <Icon name="material-symbols:book-2" />
+            </template>
+            使用教學
+          </MazBtn>
+        </div>
       </div>
     </div>
   </div>
