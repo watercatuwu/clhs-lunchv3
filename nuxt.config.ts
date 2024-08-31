@@ -8,6 +8,7 @@ export default defineNuxtConfig({
     '@nuxt/icon',
     '@pinia/nuxt',
     '@pinia-plugin-persistedstate/nuxt',
+    '@vueuse/nuxt',
   ],
   app: {
     pageTransition: { name: 'page', mode: 'out-in' },

@@ -23,6 +23,7 @@
     "@nuxtjs/tailwindcss": "^6.12.1",
     "@pinia-plugin-persistedstate/nuxt": "^1.2.1",
     "@pinia/nuxt": "^0.5.4",
+    "@vueuse/nuxt": "^11.0.3",
     "maz-ui": "^3.45.1"
   }
 }

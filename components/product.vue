@@ -2,10 +2,11 @@
     <MazCard
       :images="[image]"
       :gallery-height="200"
+      :orientation="isMd ? 'row' : 'column'"
       zoom
     >
       <template #title>
-        <h3 style="margin: 0">
+        <h3>
             {{ props.title }}
         </h3>
       </template>
@@ -15,12 +16,11 @@
         </span>
       </template>
       <template #content>
-        <p class="maz-text-muted" style="margin: 0; margin-top: 20px">
+        <p class="maz-text-muted">
            {{ props.description }}
         </p>
       </template>
       <template #footer>
-        <p class="text-zinc-400 text-left">數量</p>
         <MazInputNumber
             class="w-full"
             v-model="quantity"
@@ -38,6 +38,7 @@
 import emitter from '~/composables/bus';
 const cartStore = useCartStore()
 const quantity = ref(0)
+const isMd = useMediaQuery('(max-width: 960px)')
 const props = defineProps({
     title: String,
     id: String,
