@@ -13,6 +13,13 @@ export const useCartStore = defineStore('cart', {
       totalPrice(state) {
         return state.items.reduce((total, item) => total + item.price * item.quantity, 0)
       },
+      // 取得單個商品的數量
+      getQuantity(state) {
+        return (id) => {
+          const item = state.items.find(item => item.id === id)
+          return item ? item.quantity : 0
+        }
+      },
     },
     actions: {
       // 更新購物車中的商品
@@ -37,4 +44,7 @@ export const useCartStore = defineStore('cart', {
         this.items = []
       },
     },
-  })
+  persist: {
+    storage: persistedState.sessionStorage,
+  }
+})

@@ -1,6 +1,6 @@
 <template>
     <MazCard
-      :images="[props.image]"
+      :images="[image]"
       :gallery-height="200"
       zoom
     >
@@ -46,6 +46,17 @@ const props = defineProps({
     image: String
 })
 
+const image = ref(props.image)
+
+if (!props.image) {
+  image.value = 'https://i.meee.com.tw/qS1UdbI.png'
+}
+
+onMounted(() => {
+  const storeQuantity = cartStore.getQuantity(props.id)
+  quantity.value = storeQuantity; // 初始化 quantity
+});
+
 
 watch(
   () => quantity.value,  // 作為 source 的數據源
@@ -59,5 +70,4 @@ emitter.on('event',(data)=>{
     quantity.value = 0
   }
 })
-
 </script>

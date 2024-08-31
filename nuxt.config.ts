@@ -7,6 +7,7 @@ export default defineNuxtConfig({
     'maz-ui',
     '@nuxt/icon',
     '@pinia/nuxt',
+    '@pinia-plugin-persistedstate/nuxt',
   ],
   app: {
     pageTransition: { name: 'page', mode: 'out-in' },

@@ -10,6 +10,7 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.45.3",
     "mitt": "^3.0.1",
     "nuxt": "^3.12.4",
     "pinia": "^2.2.2",
@@ -18,7 +19,9 @@
   "devDependencies": {
     "@iconify-json/material-symbols": "^1.1.89",
     "@nuxt/icon": "^1.5.0",
+    "@nuxtjs/supabase": "^1.4.0",
     "@nuxtjs/tailwindcss": "^6.12.1",
+    "@pinia-plugin-persistedstate/nuxt": "^1.2.1",
     "@pinia/nuxt": "^0.5.4",
     "maz-ui": "^3.45.1"
   }
