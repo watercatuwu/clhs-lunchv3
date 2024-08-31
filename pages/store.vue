@@ -16,7 +16,7 @@
         <Icon name="mdi:food-drumstick" />
         簡餐部
       </h1>
-      <div class="grid md:grid-cols-4 grid-cols-1 gap-2">
+      <div class="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-2">
         <Product v-for="(p, index) in data.data.bento"
         :key="index"
         :id="p.id"
@@ -30,7 +30,7 @@
         <Icon name="mdi:noodles" />
         麵食部
       </h1>
-      <div class="grid md:grid-cols-4 grid-cols-1 gap-2">
+      <div class="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-2">
         <Product v-for="(p, index) in data.data.noodle"
         :key="index"
         :id="p.id"
@@ -44,7 +44,7 @@
         <Icon name="mdi:hamburger" />
         早餐部
       </h1>
-      <div class="grid md:grid-cols-4 grid-cols-1 gap-2">
+      <div class="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-2">
         <Product v-for="(p, index) in data.data.breakfast"
         :key="index"
         :id="p.id"
@@ -58,7 +58,7 @@
         <Icon name="mdi:food-fork-drink" />
         飲料
       </h1>
-      <div id="drink" class="grid md:grid-cols-4 grid-cols-1 gap-2">
+      <div  class="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-2">
         <Product v-for="(d, index) in data.data.drink"
         :key="index"
         :id="d.id"
