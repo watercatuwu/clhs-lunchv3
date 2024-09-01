@@ -1,6 +1,6 @@
 <template>
     <div class="bg-zinc-900 min-h-screen flex flex-col">
-        <Alert />
+        <Alert msg="測試訊息" icon="material-symbols:warning" />
         <Navbar />
         <slot />
         <Btmnav />

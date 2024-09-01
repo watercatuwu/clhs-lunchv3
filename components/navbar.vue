@@ -1,5 +1,5 @@
 <template>
-    <nav class="p-4 mb-4 sticky top-0 z-50 bg-zinc-900">
+    <nav class="p-4 sticky top-0 z-50 bg-zinc-900">
         <div class="container mx-auto flex justify-between items-center">
             <!-- 左側區域 -->
             <div class="flex items-center space-x-4">

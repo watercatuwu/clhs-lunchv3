@@ -6,7 +6,7 @@
                     v-for="tab in tabs"
                     :to="tab.to"
                     class="flex-1 flex flex-col items-center text-zinc-400 hover:text-zinc-100">
-                    <Icon :name="route.path === tab.to ? tab.active : tab.inactive" size="1.5rem" />
+                    <Icon :name="getIconName(tab)" size="1.5rem" />
                     <span class="text-xs mt-1">{{ tab.name }}</span>
                 </NuxtLink>
             </div>
@@ -36,6 +36,9 @@ const tabs = ref([
         to: "/me"
     }
 ])
+const getIconName = (tab) => {
+  return route.path === tab.to ? tab.active : tab.inactive;
+};
 </script>
 
 <style scoped>

@@ -1,6 +1,7 @@
 <template>
   <div class="dark">
     <NuxtLayout>
+      <NuxtLoadingIndicator :height="6" :throttle="0" />
       <NuxtPage />
     </NuxtLayout>
   </div>
@@ -8,9 +9,9 @@
 
 <script setup>
 useHead({
-  title: 'CLHS午餐訂餐系統v3',
+  title: '首頁',
   meta: [
-    { name: 'description', content: 'CLHS Lunch v3' }
+    { name: 'description', content: '這裡是首頁' }
   ]
 })
 </script>

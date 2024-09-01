@@ -42,6 +42,7 @@ const isMd = useMediaQuery('(max-width: 960px)')
 const props = defineProps({
     title: String,
     id: String,
+    type: String,
     price: Number,
     description: String,
     image: String

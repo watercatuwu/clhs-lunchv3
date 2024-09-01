@@ -27,10 +27,16 @@
                 <h1 class="text-2xl text-zinc-100">
                     {{ cartStore.totalItems }} <span class="text-xl text-zinc-400">個商品</span>
                 </h1>
-                <h1 class="text-2xl font-bold text-zinc-100">
-                    總價: ${{ cartStore.totalPrice }}
+                <h1 class="text-2xl text-zinc-100">
+                    <span class="text-xl text-zinc-400">小計</span> ${{ cartStore.totalPrice }}
+                </h1>
+                <h1 class="text-2xl text-zinc-100">
+                    <span class="text-xl text-zinc-400">折扣</span> -${{ cartStore.discount }}
                 </h1>
             </div>
+            <h1 class="text-3xl font-bold text-zinc-100 text-right">
+                <span class="text-xl text-zinc-400">總計</span> ${{ cartStore.totalPrice - cartStore.discount }}
+            </h1>
             <div class="flex flex-col gap-2 md:flex-row md:justify-end">
                 <NuxtLink to="/store" class="w-full md:w-auto">
                     <MazBtn color="danger" size="lg" class="w-full">
