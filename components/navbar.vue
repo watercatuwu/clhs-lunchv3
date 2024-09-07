@@ -8,6 +8,7 @@
             <!-- 右側區域 -->
             <div>
                 <MazDropdown
+                v-if="!logged"
                 class="text-red-500"
                 :items="dropdowns"
                 trigger="click"
@@ -15,9 +16,8 @@
                 >
                 <template #element>
                     <MazAvatar
-                    clickable
                     no-clickable-icon
-                    src="https://api.dicebear.com/9.x/identicon/svg"
+                    :src="avatar"
                     tabindex="-1"
                     />
                 </template>
@@ -31,7 +31,25 @@
 const dropdowns = [
     {
       label: '登出',
-      action: () => toast.success('CLICKED'),
+      action: () => signOut(),
     }
 ]
+
+const supabase = useSupabaseClient()
+const signOut = async () => {
+  const { error } = await supabase.auth.signOut()
+  if (error) console.log(error)
+  return navigateTo('/')
+}
+
+const avatar = ref("")
+const logged = ref(false)
+const user = useSupabaseUser()
+if (user.value === null) {
+    logged.value = true
+    avatar.value = "https://i.meee.com.tw/DSwzgKz.png"
+} else {
+    logged.value = false
+    avatar.value = `https://api.dicebear.com/9.x/identicon/svg?&backgroundColor=000000&scale=50&seed=${user.value.user_metadata.email.split('@')[0]}`
+}
 </script>

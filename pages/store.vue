@@ -9,7 +9,7 @@
         v-model="dateValue"
         :format="dateFormat(dateValue)"
         :enable-time-picker="false"
-        :min-date="now.toJSDate()"
+        :min-date="'2024-09-02'"
         :max-date="now.plus({day:1}).endOf('week').toJSDate()"
         :disabled-week-days="[6, 0]"
         auto-apply

@@ -1,6 +1,6 @@
 <template>
   <Transition name="slide-up">
-    <div v-if="cartStore.items.length > 0" class="fixed bottom-0 left-0 right-0 mb-16 z-50 md:w-1/3 w-full px-4 mx-auto">
+    <div v-if="cartStore.items.length > 0" class="fixed bottom-0 left-0 right-0 mb-16 z-40 md:w-1/3 w-full px-4 mx-auto">
       <MazCard class="w-full">
         <template #content>
           <div class="flex flex-row justify-between items-center">

@@ -1,11 +1,9 @@
-import { createClient } from '@supabase/supabase-js'
+import { serverSupabaseClient } from '#supabase/server'
 
-// Create a single supabase client for interacting with your database
-const supabase = createClient(process.env.VITE_SUPABASE_URL, process.env.VITE_SUPABASE_KEY)
+export default eventHandler(async (event) => {
+  const client = await serverSupabaseClient(event)
 
-
-async function fetchProduct() {
-    const { data, error } = await supabase
+  const { data, error } = await client
     .from('menus')
     .select()
 
@@ -13,8 +11,4 @@ async function fetchProduct() {
         return error
     }
     return data
-};
-
-export default defineEventHandler(event => {
-    return fetchProduct()
-});
+})

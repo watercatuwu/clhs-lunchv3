@@ -17,6 +17,10 @@ useHead({
 </script>
 
 <style>
+body{
+  font-family: Quicksand, ui-sans-serif, system-ui, sans-serif
+}
+
 .page-enter-active,
 .page-leave-active {
   transition: all 0.4s;

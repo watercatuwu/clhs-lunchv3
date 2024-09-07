@@ -1,5 +1,5 @@
 <template>
-    <MazBtn @click="handleLogin" class="max-w-xs mx-2">
+    <MazBtn @click="handleLogin" :loading="loading" class="max-w-xs mx-2">
         <template #left-icon>
             <Icon name="material-symbols:login" />
         </template>
@@ -8,20 +8,19 @@
 </template>
 
 <script setup>
-import { createClient } from '@supabase/supabase-js'
-
-const supabase = createClient(import.meta.env.VITE_SUPABASE_URL, import.meta.env.VITE_SUPABASE_KEY)
-
+const loading = ref(false)
+const supabase = useSupabaseClient()
 async function handleLogin() {
-    const { data, error } = await supabase.auth.signInWithOAuth({
-        provider: 'google'
+    loading.value = true
+    const { error } = await supabase.auth.signInWithOAuth({
+        provider: 'google',
+        options: {
+            redirectTo: 'http://localhost:3000/me',
+        }
     })
 
     if (error) {
         console.log(error)
     }
-
-    console.log(data)
 }
-
 </script>

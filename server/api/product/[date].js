@@ -1,9 +1,10 @@
-import { createClient } from '@supabase/supabase-js'
+import { serverSupabaseClient } from '#supabase/server'
 
-const supabase = createClient(process.env.VITE_SUPABASE_URL, process.env.VITE_SUPABASE_KEY)
+export default eventHandler(async (event) => {
+  const client = await serverSupabaseClient(event)
+  const date = getRouterParam(event, 'date');
 
-async function fetchProduct(date) {
-    const { data, error } = await supabase
+  const { data, error } = await client
     .from('menus')
     .select()
     .eq('date', date)
@@ -13,9 +14,4 @@ async function fetchProduct(date) {
         return error
     }
     return data
-};
-
-export default defineEventHandler(event => {
-    const date = getRouterParam(event, 'date');
-    return fetchProduct(date)
-});
+})
