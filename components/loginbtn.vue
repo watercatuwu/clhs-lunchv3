@@ -15,7 +15,7 @@ async function handleLogin() {
     const { error } = await supabase.auth.signInWithOAuth({
         provider: 'google',
         options: {
-            redirectTo: 'http://localhost:3000/me',
+            redirectTo: `${window.location.href}me`,
         }
     })
 
