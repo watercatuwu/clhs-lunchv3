@@ -3,7 +3,7 @@
         <div class="container mx-auto flex justify-between items-center">
             <!-- 左側區域 -->
             <div class="flex items-center space-x-4">
-                <a href="#" class="text-xl font-bold text-zinc-100">CLHS Lunch v3</a>
+                <a id="logo" href="/" class="text-xl font-bold text-zinc-100">CLHS Lunch v3</a>
             </div>
             <!-- 右側區域 -->
             <div>
@@ -39,7 +39,7 @@ const supabase = useSupabaseClient()
 const signOut = async () => {
   const { error } = await supabase.auth.signOut()
   if (error) console.log(error)
-  return navigateTo('/')
+  navigateTo('/')
 }
 
 const avatar = ref("")
@@ -53,3 +53,9 @@ if (user.value === null) {
     avatar.value = `https://api.dicebear.com/9.x/identicon/svg?&backgroundColor=000000&scale=50&seed=${user.value.user_metadata.email.split('@')[0]}`
 }
 </script>
+
+<style scoped>
+#logo{
+    font-family: 'Outfit', sans-serif;
+}
+</style>

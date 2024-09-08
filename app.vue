@@ -1,7 +1,7 @@
 <template>
   <div class="dark">
     <NuxtLayout>
-      <NuxtLoadingIndicator :height="6" :throttle="0" />
+      <NuxtLoadingIndicator :height="6" />
       <NuxtPage />
     </NuxtLayout>
   </div>
@@ -9,18 +9,13 @@
 
 <script setup>
 useHead({
-  title: '首頁',
   meta: [
-    { name: 'description', content: '這裡是首頁' }
+    { name: 'google-site-verification', content: 'X9eP00pJfv2y0GzKFMaVhbDvg7s8WL8yC1w2bxRb07M' }
   ]
 })
 </script>
 
 <style>
-body{
-  font-family: Quicksand, ui-sans-serif, system-ui, sans-serif
-}
-
 .page-enter-active,
 .page-leave-active {
   transition: all 0.4s;

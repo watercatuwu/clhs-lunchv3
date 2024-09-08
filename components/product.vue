@@ -51,7 +51,7 @@ const props = defineProps({
 const image = ref(props.image)
 
 if (!props.image) {
-  image.value = 'https://i.meee.com.tw/qS1UdbI.png'
+  image.value = 'https://drive.miyago9267.com/d/file/img/mygo/%E5%8F%AF%E4%BB%A5%E5%90%83%E4%BA%86%E5%97%8E.jpg'
 }
 
 onMounted(() => {

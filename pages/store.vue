@@ -1,22 +1,23 @@
 <template>
-<div>
-  <div class="pb-48">
+<div class="flex-grow flex">
+  <div class="flex-grow pb-48">
     <MazLoadingBar v-if="isLoading" class="fixed w-full top-0 right-0 left-0 mb-4" height="0.25rem" color="secondary" />
     <!--預留高度-->
     <div v-else class="h-1 mb-4" />
-    <div class="container mx-auto mt-4 md:px-0 px-2 flex flex-col gap-4 overflow-y-auto">
+    <div class="container mx-auto mt-4 h-full md:px-0 px-2 flex flex-col gap-4 overflow-y-auto">
       <VueDatePicker
         v-model="dateValue"
-        :format="dateFormat(dateValue)"
+        :format="DateTime.fromJSDate(dateValue).toFormat('DDDD')"
         :enable-time-picker="false"
-        :min-date="'2024-09-02'"
+        :min-date="now.plus({day:1}).startOf('week').toJSDate()"
         :max-date="now.plus({day:1}).endOf('week').toJSDate()"
         :disabled-week-days="[6, 0]"
         auto-apply
         dark
       />
+      <h1 v-if="isError" class="mt-6 text-2xl font-bold text-red-500">{{ errorMsg }}</h1>
       <Transition name="fade">
-      <div v-if="!isLoading" class="mt-6 space-y-8">
+      <div v-if="!isLoading&&!isError" class="mt-6 space-y-8">
         <h1 class="text-3xl font-bold text-zinc-100 flex items-center gap-2">
           <Icon name="mdi:food-drumstick" />
           簡餐部<span class="text-zinc-400">Bento</span>
@@ -99,27 +100,44 @@ definePageMeta({
   layout: 'mobile'
 });
 const isLoading = ref(true)
+const isError = ref(false)
 const cartStore = useCartStore()
 const now = DateTime.now().setLocale('zh-TW').setZone('Asia/Taipei');
 const dateValue = ref(now.toJSDate())
+const data = ref(null)
+const errorMsg = ref("")
 
-const { data, error } = await useFetch('/api/product/2024-09-02');
-isLoading.value = false;
-
-function dateFormat(date){
-  const day = date.getDate();
-  const month = date.getMonth() + 1;
-  const year = date.getFullYear();
-
-  return `${year}-${month}-${day}`;
-}
+onMounted(async() => {
+  const { data:product } = await useFetch(`/api/product/${now.toISODate()}`)
+  if (product.value.code){
+      if (product.value.code === 'PGRST116'){
+        isError.value = true
+        isLoading.value = false
+        errorMsg.value = "查無本日菜單資料:("
+        return
+      }
+    }
+  data.value = product.value
+  isError.value = false
+  isLoading.value = false
+})
 
 watch(
   () => dateValue.value,
   async(newValue) => {
     cartStore.clearCart()
     isLoading.value = true
-    data.value = await $fetch('/api/product/' + dateFormat(newValue))
+    const product = await $fetch('/api/product/' + DateTime.fromJSDate(newValue).toFormat('yyyy-MM-dd'))
+    if (product.code){
+      if (product.code === 'PGRST116'){
+        isError.value = true
+        isLoading.value = false
+        errorMsg.value = "查無本日菜單資料:("
+        return
+      }
+    }
+    data.value = product
+    isError.value = false
     isLoading.value = false
   }
 )

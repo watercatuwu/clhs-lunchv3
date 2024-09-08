@@ -18,7 +18,7 @@
                         { label: '價格', key: 'price', align: 'center'  },
                         { label: '數量', key: 'quantity', align: 'center' },
                         ]"
-                        :rows="competitions"
+                        :rows="cartStore.items"
                      >
                     </MazTable>
                 </template>
@@ -43,7 +43,7 @@
                         取消
                     </MazBtn>
                 </NuxtLink>
-                <MazBtn color="success" size="lg">
+                <MazBtn :disabled="cartStore.items.length===0" :loading="loading" @click="checkout" color="success" size="lg">
                     結帳
                 </MazBtn>
             </div>
@@ -59,5 +59,19 @@ definePageMeta({
   layout: 'mobile'
 });
 const cartStore = useCartStore()
-const competitions = cartStore.items
+const supabase = useSupabaseClient()
+const loading = ref(false)
+
+async function checkout() {
+    loading.value = true
+    const data = {
+        date: '2024-09-02',
+        items: cartStore.items
+    }
+    const { error } = await supabase.from('orders').insert(data)
+    if (error) {
+        console.log(error)
+    }
+    cartStore.clearCart()
+}
 </script>

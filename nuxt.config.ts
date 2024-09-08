@@ -1,3 +1,5 @@
+import { useThemeHandler } from "maz-ui";
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   ssr: false,
@@ -13,15 +15,25 @@ export default defineNuxtConfig({
     '@nuxtjs/seo',
     '@nuxtjs/supabase',
     '@nuxtjs/google-fonts',
+    '@vite-pwa/nuxt',
   ],
   app: {
     pageTransition: { name: 'page', mode: 'out-in' },
+    head: {
+      title: 'CLHS午餐訂餐系統v3',
+      meta: [
+        { name: 'description', content: '為學生提供方便快速的午餐訂餐服務' }
+      ],
+      link: [
+        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      ]
+    }
   },
   site: {
     url: 'https://clhs-lunch.vercel.app/',
     name: 'CLHS午餐訂餐系統v3',
     description: '為學生提供方便快速的午餐訂餐服務',
-    defaultLocale: 'en', // not needed if you have @nuxtjs/i18n installed
+    defaultLocale: 'zh-TW',
   },
   supabase: {
     url: process.env.SUPABASE_URL,
@@ -30,7 +42,7 @@ export default defineNuxtConfig({
   },
   googleFonts: {
     families: {
-      Quicksand: true
+      Outfit: true,
     }
-  }
+  },
 })

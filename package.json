@@ -1,5 +1,5 @@
 {
-  "name": "nuxt-app",
+  "name": "clhs-lunchv3",
   "private": true,
   "type": "module",
   "scripts": {
@@ -28,6 +28,7 @@
     "@nuxtjs/tailwindcss": "^6.12.1",
     "@pinia-plugin-persistedstate/nuxt": "^1.2.1",
     "@pinia/nuxt": "^0.5.4",
+    "@vite-pwa/nuxt": "^0.10.5",
     "@vueuse/nuxt": "^11.0.3",
     "maz-ui": "^3.45.1"
   }
