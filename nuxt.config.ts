@@ -35,6 +35,9 @@ export default defineNuxtConfig({
     description: '為學生提供方便快速的午餐訂餐服務',
     defaultLocale: 'zh-TW',
   },
+  css: [
+    '@/assets/css/maz-ui-variables.css'
+  ],
   supabase: {
     url: process.env.SUPABASE_URL,
     key: process.env.SUPABASE_KEY,
