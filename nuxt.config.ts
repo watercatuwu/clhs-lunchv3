@@ -1,5 +1,3 @@
-import { useThemeHandler } from "maz-ui";
-
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   ssr: false,
@@ -17,12 +15,16 @@ export default defineNuxtConfig({
     '@nuxtjs/google-fonts',
     '@vite-pwa/nuxt',
   ],
+  routeRules: {
+    '/': { prerender: true }
+  },
   app: {
     pageTransition: { name: 'page', mode: 'out-in' },
     head: {
       title: 'CLHS午餐訂餐系統v3',
       meta: [
-        { name: 'description', content: '為學生提供方便快速的午餐訂餐服務' }
+        { name: 'description', content: '為學生提供方便快速的午餐訂餐服務' },
+        { name: 'google-site-verification', content: 'X9eP00pJfv2y0GzKFMaVhbDvg7s8WL8yC1w2bxRb07M' }
       ],
       link: [
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }

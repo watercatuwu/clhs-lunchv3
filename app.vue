@@ -8,11 +8,6 @@
 </template>
 
 <script setup>
-useHead({
-  meta: [
-    { name: 'google-site-verification', content: 'X9eP00pJfv2y0GzKFMaVhbDvg7s8WL8yC1w2bxRb07M' }
-  ]
-})
 </script>
 
 <style>
