@@ -15,6 +15,9 @@ export default defineNuxtConfig({
     '@nuxtjs/google-fonts',
     '@vite-pwa/nuxt',
   ],
+  plugins: [
+    '~/plugins/mazToaster.js'
+  ],
   routeRules: {
     '/': { prerender: true }
   },

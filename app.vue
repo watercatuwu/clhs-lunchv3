@@ -1,7 +1,6 @@
 <template>
   <div class="dark">
     <NuxtLayout>
-      <NuxtLoadingIndicator :height="6" color="#a78bfa" />
       <NuxtPage />
     </NuxtLayout>
   </div>
@@ -11,6 +10,9 @@
 </script>
 
 <style>
+body{
+  font-family: 'Outfit', sans-serif;
+}
 .page-enter-active,
 .page-leave-active {
   transition: all 0.4s;

@@ -12,18 +12,10 @@
             <p class="text-xl text-zinc-400 text-center">{{ user.user_metadata.email.split('@')[0] }}</p>
         </div>
       </div>
-      <div class="flex-1">
-        <div class="flex flex-col gap-2">
-          <MazCard>
-            <template #title>
-              <h3 style="margin: 0; margin-bottom: 20px">
-                最近訂單
-              </h3>
-            </template>
-            <template #content>
-              <OrderList />
-            </template>
-          </MazCard>
+      <div class="flex-1 space-y-4">
+        <h1 class="text-3xl font-bold text-zinc-100 flex items-center gap-2">最近訂單</h1>
+        <div class="max-h-96 overflow-y-auto">
+            <Orderlist />
         </div>
       </div>
     </div>

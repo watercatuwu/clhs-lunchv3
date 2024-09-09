@@ -5,7 +5,7 @@
         <template #content>
           <div class="flex flex-row justify-between items-center">
             <div class="flex flex-row items-center gap-2">
-              <MazBadge size="1.25rem" rounded-size="xl">{{ cartStore.totalItems }}</MazBadge>
+              <MazBadge class="w-10 h-10" size="1.25rem" rounded-size="full">{{ cartStore.totalItems }}</MazBadge>
               <p class="text-zinc-400 text-lg">總價: {{ cartStore.totalPrice }} 元</p>
             </div>
             <div class="flex items-center gap-2">
@@ -30,15 +30,19 @@
 </template>
 
 <script setup>
+import { useToast } from 'maz-ui'
+
+const toast = useToast()
 const cartStore = useCartStore()
 function cleanCart(){
+  toast.success('已清空購物車')
   cartStore.clearCart()
 }
 </script>
 
 <style scoped>
 .slide-up-enter-active, .slide-up-leave-active {
-  transition: transform 0.5s ease;
+  transition: transform 0.75s ease-in-out;
 }
 
 .slide-up-enter-from {

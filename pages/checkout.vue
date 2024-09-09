@@ -58,20 +58,31 @@ useHead({
 definePageMeta({
   layout: 'mobile'
 });
+
+import { useToast } from 'maz-ui'
+import { DateTime } from 'luxon'
+
+const toast = useToast()
 const cartStore = useCartStore()
+const dateStore = useDateStore()
 const supabase = useSupabaseClient()
 const loading = ref(false)
 
 async function checkout() {
     loading.value = true
+    console.log(dateStore.value)
     const data = {
-        date: '2024-09-02',
+        date: dateStore.value,
         items: cartStore.items
     }
     const { error } = await supabase.from('orders').insert(data)
     if (error) {
-        console.log(error)
+        toast.error(error.message)
+        loading.value = false
+        return
     }
+    toast.success('訂單已送出')
     cartStore.clearCart()
+    return navigateTo('/store')
 }
 </script>

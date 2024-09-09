@@ -95,4 +95,6 @@
   --maz-color-danger-alpha-05: hsla(0, 84%, 60%, 0.05);
   --maz-color-danger-contrast: hsl(0, 0%, 100%);
 
+  --maz-font-family: Outfit, system-ui, sans-serif, system-ui, -apple-system, blinkmacsystemfont, 'Segoe UI', roboto, oxygen,
+    ubuntu, cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
 }

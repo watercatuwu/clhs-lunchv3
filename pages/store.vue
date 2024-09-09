@@ -90,6 +90,7 @@
 import VueDatePicker from '@vuepic/vue-datepicker';
 import '@vuepic/vue-datepicker/dist/main.css';
 import { DateTime } from 'luxon';
+import { useToast } from 'maz-ui';
 useHead({
   title: '商店',
   meta: [
@@ -99,11 +100,13 @@ useHead({
 definePageMeta({
   layout: 'mobile'
 });
+const toast = useToast()
 const isLoading = ref(true)
 const isError = ref(false)
 const cartStore = useCartStore()
+const dateStore = useDateStore()
 const now = DateTime.now().setLocale('zh-TW').setZone('Asia/Taipei');
-const dateValue = ref(now.toJSDate())
+const dateValue = ref(DateTime.fromISO(dateStore.value).toJSDate())
 const data = ref(null)
 const errorMsg = ref("")
 
@@ -125,6 +128,7 @@ onMounted(async() => {
 watch(
   () => dateValue.value,
   async(newValue) => {
+    dateStore.value = newValue.toISOString() //儲存當前選擇的日期
     cartStore.clearCart()
     isLoading.value = true
     const product = await $fetch('/api/product/' + DateTime.fromJSDate(newValue).toFormat('yyyy-MM-dd'))
@@ -133,12 +137,14 @@ watch(
         isError.value = true
         isLoading.value = false
         errorMsg.value = "查無本日菜單資料:("
+        toast.error(errorMsg.value)
         return
       }
     }
     data.value = product
     isError.value = false
     isLoading.value = false
+    toast.success('已載入菜單')
   }
 )
 </script>

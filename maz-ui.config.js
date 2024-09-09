@@ -12,5 +12,6 @@ export default defineConfig({
       warning: '#facc15',
       danger: '#ef4444',
   },
+  fontFamily: `Outfit, system-ui, sans-serif`
 }}
 )

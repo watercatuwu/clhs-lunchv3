@@ -4,7 +4,7 @@
         <div class="grid md:grid-cols-2 grid-cols-1 mx-4">
             <div class="flex justify-center items-center relative mb-12">
                 <div id="imgbg" class="absolute rounded-full md:w-80 md:h-80 w-56 h-56"></div>
-                <img class="md:h-72 h-60 relative" src="~/assets/img/logo.png" alt="hero image">
+                <img class="md:h-72 h-60 relative" src="~/assets/img/logo.webp" alt="hero image">
             </div>
             <div class="flex flex-col justify-center">
                 <h1 class="title md:text-6xl text-5xl text-zinc-100 md:text-left text-center">CLHS <span>Lunch</span> <span class="text-violet-400 text-shadow">v3</span></h1>
