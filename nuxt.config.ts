@@ -5,7 +5,7 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: [
     '@nuxtjs/tailwindcss',
-    'maz-ui',
+    'maz-ui/nuxt',
     '@nuxt/icon',
     '@pinia/nuxt',
     '@pinia-plugin-persistedstate/nuxt',

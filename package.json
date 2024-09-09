@@ -31,6 +31,6 @@
     "@pinia/nuxt": "^0.5.4",
     "@vite-pwa/nuxt": "^0.10.5",
     "@vueuse/nuxt": "^11.0.3",
-    "maz-ui": "^3.45.1"
+    "maz-ui": "^3.45.4"
   }
 }
