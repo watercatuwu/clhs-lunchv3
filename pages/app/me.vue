@@ -30,7 +30,8 @@ useHead({
   ]
 })
 definePageMeta({
-  layout: 'mobile'
+  layout: 'mobile',
+  middleware: 'auth'
 });
 
 const user = useSupabaseUser()

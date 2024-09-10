@@ -14,6 +14,7 @@ useHead({
   ]
 })
 definePageMeta({
-  layout: 'mobile'
+  layout: 'mobile',
+  middleware: 'auth'
 });
 </script>

@@ -9,7 +9,7 @@
         v-model="dateValue"
         :format="DateTime.fromJSDate(dateValue).toFormat('DDDD')"
         :enable-time-picker="false"
-        :min-date="now.plus({day:1}).startOf('week').toJSDate()"
+        :min-date="now.toJSDate()"
         :max-date="now.plus({day:1}).endOf('week').toJSDate()"
         :disabled-week-days="[6, 0]"
         auto-apply
@@ -91,6 +91,7 @@ import VueDatePicker from '@vuepic/vue-datepicker';
 import '@vuepic/vue-datepicker/dist/main.css';
 import { DateTime } from 'luxon';
 import { useToast } from 'maz-ui';
+
 useHead({
   title: '商店',
   meta: [
@@ -98,8 +99,10 @@ useHead({
   ]
 })
 definePageMeta({
-  layout: 'mobile'
+  layout: 'mobile',
+  middleware: 'auth'
 });
+
 const toast = useToast()
 const isLoading = ref(true)
 const isError = ref(false)

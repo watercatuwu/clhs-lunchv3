@@ -1,5 +1,5 @@
 <template>
-<div class="flex-1 flex items-center justify-center">
+<div class="flex-1 flex flex-col items-center justify-center">
     <div class="container mx-auto">
         <div class="grid md:grid-cols-2 grid-cols-1 mx-4">
             <div class="flex justify-center items-center relative mb-12">

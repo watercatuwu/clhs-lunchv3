@@ -21,19 +21,19 @@ const tabs = ref([
         name: "主頁",
         inactive: "material-symbols:home-outline-rounded",
         active: "material-symbols:home-rounded",
-        to: "/home"
+        to: "/app/home"
     },
     {
         name: "商店",
         inactive: "material-symbols:storefront-outline-rounded",
         active: "material-symbols:storefront-rounded",
-        to: "/store"
+        to: "/app/store"
     },
     {
         name: "我",
         inactive: "material-symbols:person-outline-rounded",
         active: "material-symbols:person-rounded",
-        to: "/me"
+        to: "/app/me"
     }
 ])
 const getIconName = (tab) => {

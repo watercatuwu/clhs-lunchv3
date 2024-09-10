@@ -38,7 +38,7 @@
                 <span class="text-xl text-zinc-400">總計</span> ${{ cartStore.totalPrice - cartStore.discount }}
             </h1>
             <div class="flex flex-col gap-2 md:flex-row md:justify-end">
-                <NuxtLink to="/store" class="w-full md:w-auto">
+                <NuxtLink to="/app/store" class="w-full md:w-auto">
                     <MazBtn color="danger" size="lg" class="w-full">
                         取消
                     </MazBtn>
@@ -56,7 +56,8 @@ useHead({
   title: '結帳',
 })
 definePageMeta({
-  layout: 'mobile'
+  layout: 'mobile',
+  middleware: 'auth'
 });
 
 import { useToast } from 'maz-ui'
@@ -83,6 +84,6 @@ async function checkout() {
     }
     toast.success('訂單已送出')
     cartStore.clearCart()
-    return navigateTo('/store')
+    return navigateTo('/app/store')
 }
 </script>

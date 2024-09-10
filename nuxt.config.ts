@@ -40,6 +40,9 @@ export default defineNuxtConfig({
     description: '為學生提供方便快速的午餐訂餐服務',
     defaultLocale: 'zh-TW',
   },
+  sitemap: {
+    exclude:['/app/*']
+  },
   css: [
     '@/assets/css/maz-ui-variables.css'
   ],

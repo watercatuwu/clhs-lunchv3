@@ -14,7 +14,7 @@
                   <Icon name="material-symbols:shopping-cart-off-rounded" size="1.25rem" />
                 </template>
               </MazBtn>
-              <NuxtLink to="/checkout">
+              <NuxtLink to="/app/checkout">
                 <MazBtn color="success" fab>
                   <template #left-icon>
                     <Icon name="material-symbols:shopping-cart-checkout-rounded" size="1.25rem" />
