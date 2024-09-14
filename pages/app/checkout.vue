@@ -67,14 +67,22 @@ const toast = useToast()
 const cartStore = useCartStore()
 const dateStore = useDateStore()
 const supabase = useSupabaseClient()
+const user = useSupabaseUser()
 const loading = ref(false)
 
 async function checkout() {
+    const { data: pubUser, error: pubError } = await supabase
+    .from('users')
+    .select('*')
+    .eq('id', user.value.id)
+    .single()
+
     loading.value = true
-    console.log(dateStore.value)
     const data = {
         date: dateStore.value,
-        items: cartStore.items
+        items: cartStore.items,
+        class: pubUser.class,
+        number: pubUser.number,
     }
     const { error } = await supabase.from('orders').insert(data)
     if (error) {

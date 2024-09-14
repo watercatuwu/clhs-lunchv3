@@ -9,7 +9,7 @@
                 <p v-for="j in i.items" class="text-md text-zinc-400">{{j.title}}x{{j.quantity}}</p>
                 <template #footer>
                     <div class="flex justify-between">
-                        <h3 class="text-2xl text-zinc-100">${{ totalPrice(i.items) }}</h3>
+                        <h3 class="text-2xl text-zinc-100">${{ totalPrice(i.items)-discount(i.items) }}</h3>
                         <MazBtn size="sm" color="danger" @click="cancelOrder(i.id)">取消訂單</MazBtn>
                     </div>
                 </template>
@@ -24,8 +24,33 @@ const supabase = useSupabaseClient()
 const { data: orders } = await useFetch(`/api/order/${user.value.id}`)
 console.log(orders.value)
 
-const totalPrice = (items) => {
+function totalPrice(items) {
     return items.reduce((total, item) => total + item.price * item.quantity, 0)
+}
+
+function discount(items) {
+    let breakfastQty = 0;
+    let drinkQty = 0;
+    // 計算早餐及飲料數量
+    items.forEach(item => {
+        if (item.type === 'breakfast') {
+            breakfastQty += item.quantity;
+        }
+        if (item.type === 'drink') {
+            drinkQty += item.quantity;
+        }
+    });
+
+    // 計算折扣
+    const bundleDiscount = 5; // 折扣金額
+    if (breakfastQty>0 && drinkQty>0) {
+        if (breakfastQty < drinkQty){
+            return bundleDiscount * breakfastQty;
+        } else {
+            return bundleDiscount * drinkQty;
+        }
+    }
+    return 0;
 }
 
 async function cancelOrder(id) {

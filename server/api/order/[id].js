@@ -2,12 +2,12 @@ import { serverSupabaseClient } from '#supabase/server'
 
 export default eventHandler(async (event) => {
   const client = await serverSupabaseClient(event)
-  const user = getRouterParam(event, 'user');
+  const id = getRouterParam(event, 'id');
 
   const { data, error } = await client
     .from('orders')
     .select()
-    .eq('uuid', user)
+    .eq('userid', id)
     .order('created_at', { ascending: false })
 
 

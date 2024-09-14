@@ -6,10 +6,17 @@
           :src="`https://api.dicebear.com/9.x/identicon/svg?&backgroundColor=000000&scale=50&seed=${user.user_metadata.email.split('@')[0]}`"
           size="3rem"
         />
-        <div class="mb-4">
+        <div class="mb-4 space-y-2">
             <h1 class="text-4xl font-bold text-zinc-100 text-center">{{user.user_metadata.full_name}}</h1>
-            <p class="text-xl text-zinc-400 text-center">{{user.user_metadata.email}}</p>
             <p class="text-xl text-zinc-400 text-center">{{ user.user_metadata.email.split('@')[0] }}</p>
+            <div class="flex justify-center gap-2">
+              <MazBadge color="primary" size="1rem">
+                {{ pubUser.role }}
+              </MazBadge>
+              <MazBadge color="success" size="1rem">
+                創建日期: {{ DateTime.fromISO(pubUser.created_at).toFormat('yyyy-MM-dd') }}
+              </MazBadge>
+          </div>
         </div>
       </div>
       <div class="flex-1 space-y-4">
@@ -23,6 +30,7 @@
 </template>
 
 <script setup>
+import { DateTime } from 'luxon'
 useHead({
   title: '我',
   meta: [
@@ -34,5 +42,13 @@ definePageMeta({
   middleware: 'auth'
 });
 
+const supabase = useSupabaseClient()
 const user = useSupabaseUser()
+const { data: pubUser, error: pubError } = await supabase
+  .from('users')
+  .select('*')
+  .eq('id', user.value.id)
+  .single()
+
+console.log(pubUser)
 </script>
