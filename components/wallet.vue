@@ -39,5 +39,5 @@ const user = useSupabaseUser()
 
 const priceValue = ref(0)
 
-const { data: balenceValue } = await useFetch('/api/balance/'+user.value.id)
+const { data: balenceValue } = await useFetch('/api/user/balance/'+user.value.id)
 </script>

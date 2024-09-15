@@ -18,6 +18,12 @@
               </MazBadge>
           </div>
         </div>
+        <div class="flex flex-col gap-2 justify-center items-center">
+          <NuxtLink v-if="pubUser.role === 'admin'" to="/dash/order">
+            <MazBtn class="w-72" color="primary" @click="signOut">前往管理面板</MazBtn>
+          </NuxtLink>
+          <MazBtn class="w-72" color="danger" @click="signOut">登出</MazBtn>
+        </div>
       </div>
       <div class="flex-1 space-y-4">
         <h1 class="text-3xl font-bold text-zinc-100 flex items-center gap-2">最近訂單</h1>
@@ -50,5 +56,11 @@ const { data: pubUser, error: pubError } = await supabase
   .eq('id', user.value.id)
   .single()
 
-console.log(pubUser)
+function signOut() {
+  const { error } = supabase.auth.signOut()
+  if (error) {
+    console.log(error)
+  }
+  navigateTo('/')
+}
 </script>

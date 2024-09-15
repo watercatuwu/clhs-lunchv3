@@ -1,7 +1,7 @@
 <template>
 <div class="flex-grow flex">
   <div class="flex-grow pb-48">
-    <MazLoadingBar v-if="isLoading" class="fixed w-full top-0 right-0 left-0 mb-4" height="0.25rem" color="secondary" />
+    <MazLoadingBar v-if="isLoading" class="fixed w-full top-0 right-0 left-0 mb-4" color="primary" />
     <!--預留高度-->
     <div v-else class="h-1 mb-4" />
     <div class="container mx-auto mt-4 h-full md:px-0 px-2 flex flex-col gap-4 overflow-y-auto">
@@ -114,7 +114,7 @@ const data = ref(null)
 const errorMsg = ref("")
 
 onMounted(async() => {
-  const { data:product } = await useFetch(`/api/product/${now.toISODate()}`)
+  const { data:product } = await useFetch(`/api/product/${dateStore.value}`)
   if (product.value.code){
       if (product.value.code === 'PGRST116'){
         isError.value = true
