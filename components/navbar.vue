@@ -1,45 +1,19 @@
 <template>
     <nav class="p-4 sticky top-0 z-50 bg-zinc-900">
         <div class="container mx-auto flex justify-between items-center">
-            <!-- 左側區域 -->
             <div class="flex items-center space-x-4">
                 <a href="/" class="text-xl font-bold text-zinc-100">CLHS Lunch v3</a>
             </div>
-            <!-- 右側區域 -->
-            <div v-if="logged">
-                <MazDropdown
-                class="text-red-500"
-                :items="dropdowns"
-                trigger="click"
-                position="bottom right"
-                >
-                <template #element>
-                    <MazAvatar
-                    no-clickable-icon
-                    :src="avatar"
-                    tabindex="-1"
-                    />
-                </template>
-                </MazDropdown>
+            <div v-if="logged" class="flex items-center space-x-4">
+                <Avatar :size="50" variant="beam" :colors="colors" :name="avatar" />
             </div>
         </div>
     </nav>
 </template>
 
 <script setup>
-const dropdowns = [
-    {
-      label: '登出',
-      action: () => signOut(),
-    }
-]
-
-const supabase = useSupabaseClient()
-const signOut = async () => {
-  const { error } = await supabase.auth.signOut()
-  if (error) console.log(error)
-  navigateTo('/')
-}
+import Avatar from "vue-boring-avatars"
+const colors = ['#09090b', '#f4f4f5']
 
 const avatar = ref("")
 const logged = ref(false)
@@ -47,7 +21,7 @@ const session = useSupabaseSession()
 if (session.value) {
     logged.value = true
     const user = useSupabaseUser()
-    avatar.value = `https://api.dicebear.com/9.x/identicon/svg?&backgroundColor=000000&scale=50&seed=${user.value.user_metadata.email.split('@')[0]}`
+    avatar.value = user.value.user_metadata.full_name
 }
 </script>
 

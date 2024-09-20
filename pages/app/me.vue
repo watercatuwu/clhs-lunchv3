@@ -2,12 +2,11 @@
   <div class="pb-24">
     <div class="container mx-auto px-2 lg:px-0 flex flex-col lg:flex-row gap-4 overflow-y-auto">
       <div class="flex flex-col gap-4 w-full lg:w-1/3">
-        <MazAvatar
-          :src="`https://api.dicebear.com/9.x/identicon/svg?&backgroundColor=000000&scale=50&seed=${user.user_metadata.email.split('@')[0]}`"
-          size="3rem"
-        />
+        <div class="flex justify-center">
+          <Avatar :size="150" variant="beam" :colors="colors" :name="user.user_metadata.full_name" />
+        </div>
         <div class="mb-4 space-y-2">
-            <h1 class="text-4xl font-bold text-zinc-100 text-center">{{user.user_metadata.full_name}}</h1>
+            <h1 class="text-4xl font-bold text-zinc-100 text-center">{{ user.user_metadata.full_name }}</h1>
             <p class="text-xl text-zinc-400 text-center">{{ user.user_metadata.email.split('@')[0] }}</p>
             <div class="flex justify-center gap-2">
               <MazBadge color="primary" size="1rem">
@@ -20,7 +19,7 @@
         </div>
         <div class="flex flex-col gap-2 justify-center items-center">
           <NuxtLink v-if="pubUser.role === 'admin'" to="/dash/order">
-            <MazBtn class="w-72" color="primary" @click="signOut">前往管理面板</MazBtn>
+            <MazBtn class="w-72" color="primary">前往管理面板</MazBtn>
           </NuxtLink>
           <MazBtn class="w-72" color="danger" @click="signOut">登出</MazBtn>
         </div>
@@ -37,6 +36,8 @@
 
 <script setup>
 import { DateTime } from 'luxon'
+import Avatar from "vue-boring-avatars"
+
 useHead({
   title: '我',
   meta: [
@@ -48,6 +49,7 @@ definePageMeta({
   middleware: 'auth'
 });
 
+const colors = ['#09090b', '#f4f4f5']
 const supabase = useSupabaseClient()
 const user = useSupabaseUser()
 const { data: pubUser, error: pubError } = await supabase
