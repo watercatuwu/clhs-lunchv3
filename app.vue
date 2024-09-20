@@ -11,7 +11,7 @@
 
 <style>
 body{
-  font-family: 'Outfit', sans-serif;
+  font-family: 'Outfit', 'Noto Sans Traditional Chinese',sans-serif;
 }
 .page-enter-active,
 .page-leave-active {

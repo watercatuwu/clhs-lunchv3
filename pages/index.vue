@@ -7,8 +7,8 @@
                 <img class="md:h-72 h-60 relative" src="~/assets/img/logo.webp" alt="hero image">
             </div>
             <div class="flex flex-col justify-center">
-                <h1 class="title md:text-6xl text-5xl text-zinc-100 md:text-left text-center">CLHS <span>Lunch</span> <span class="text-violet-400 text-shadow">v3</span></h1>
-                <p class="title md:text-xl text-lg text-zinc-400 md:text-left text-center">歡迎使用<span class="text-violet-400">CLHS午餐訂餐系統</span> v3.0</p>
+                <h1 class="md:text-6xl text-5xl text-zinc-100 md:text-left text-center">CLHS <span>Lunch</span> <span class="text-violet-400 text-shadow">v3</span></h1>
+                <p class="md:text-xl text-lg text-zinc-400 md:text-left text-center">歡迎使用<span class="text-violet-400">CLHS午餐訂餐系統</span> v3.0</p>
                 <div class="flex my-4 md:justify-start justify-center">
                     <Loginbtn />
                     <NuxtLink to="/tutorial">
@@ -36,9 +36,6 @@ useHead({
 </script>
 
 <style scoped>
-.title {
-    font-family: 'Outfit', sans-serif;
-}
 #imgbg {
     background: #a78bfa;
     filter: blur(5rem);

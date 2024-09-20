@@ -54,6 +54,7 @@ export default defineNuxtConfig({
   googleFonts: {
     families: {
       Outfit: true,
+      'Noto Sans Traditional Chinese': true
     }
   },
 })
