@@ -18,7 +18,7 @@
           </div>
         </div>
         <div class="flex flex-col gap-2 justify-center items-center">
-          <NuxtLink v-if="pubUser.role === 'admin'" to="/dash/order">
+          <NuxtLink v-if="pubUser.role === 'admin'" to="/dash/home">
             <MazBtn class="w-72" color="primary">前往管理面板</MazBtn>
           </NuxtLink>
           <MazBtn class="w-72" color="danger" @click="signOut">登出</MazBtn>

@@ -7,7 +7,7 @@ export default eventHandler(async (event) => {
   const { data, error } = await client
     .from('orders')
     .select()
-    .eq('userid', id)
+    .eq('user_id', id)
     .order('created_at', { ascending: false })
 
 

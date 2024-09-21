@@ -13,7 +13,7 @@
                         sortable
                         hoverable
                         :headers="[
-                        { label:'#', key: 'id', align: 'center' },
+                        { label:'#', key: 'id', align: 'center', width: '2rem' },
                         { label:'商品', key: 'title' },
                         { label: '價格', key: 'price', align: 'center'  },
                         { label: '數量', key: 'quantity', align: 'center' },
@@ -23,6 +23,24 @@
                     </MazTable>
                 </template>
             </MazCard>
+            <h1 class="text-2xl font-bold text-zinc-100">付款方式</h1>
+            <MazRadioButtons
+                v-slot="{ option, selected }"
+                v-model="selectedMethod"
+                :options="paymentMethod"
+                selector
+                equal-size
+                block
+            >
+                <div class="flex flex-col items-start p-2">
+                    <h3 class="mb-2 text-xl font-semibold" :class="{ 'text-zinc-400': !selected }">
+                        {{ option.label }}
+                    </h3>
+                    <span :class="{ 'text-zinc-400': !selected }">
+                        {{ option.description }}
+                    </span>
+                </div>
+            </MazRadioButtons>
             <div class="flex gap-2 justify-end">
                 <h1 class="text-2xl text-zinc-100">
                     {{ cartStore.totalItems }} <span class="text-xl text-zinc-400">個商品</span>
@@ -70,21 +88,42 @@ const supabase = useSupabaseClient()
 const user = useSupabaseUser()
 const loading = ref(false)
 
-async function checkout() {
-    const { data: pubUser, error: pubError } = await supabase
+const { data: pubUser, error: pubError } = await supabase
     .from('users')
     .select('*')
     .eq('id', user.value.id)
     .single()
 
+const paymentMethod = [
+    { label: '現金', description: '你要出多少>:(', value: 'cash' },
+    { label: '線上錢包', description: `錢包餘額:$${pubUser.balance}`, value: 'wallet' },
+]
+
+const selectedMethod = ref('cash')
+
+async function checkout() {
     loading.value = true
+
     const data = {
         date: dateStore.value,
         items: cartStore.items,
         class: pubUser.class,
         number: pubUser.number,
+        payment_method: selectedMethod.value,
     }
+
+    if (selectedMethod.value === 'wallet') {
+        if (pubUser.balance < (cartStore.totalPrice - cartStore.discount)) {
+            toast.error('錢包餘額不足!窮逼')
+            return
+        }
+        else {
+            data.checked = true
+        }
+    }
+
     const { error } = await supabase.from('orders').insert(data)
+
     if (error) {
         toast.error(error.message)
         loading.value = false
