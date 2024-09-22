@@ -16,6 +16,7 @@ export default defineNuxtConfig({
     '@nuxtjs/robots',
     '@nuxtjs/sitemap',
     'nuxt-link-checker',
+    'nuxt-seo-experiments',
   ],
   plugins: [
     '~/plugins/mazToaster.js'
