@@ -64,7 +64,7 @@ export default defineNuxtConfig({
     manifest: {
       name: 'CLHS午餐訂餐系統',
       short_name: 'CLHS Lunch',
-      description: 'CLHS午餐訂餐系統v3',
+      description: '為學生提供方便快速的午餐訂餐服務',
       theme_color: '#ffffff',
       background_color: '#ffffff',
       display: 'standalone',
@@ -74,11 +74,13 @@ export default defineNuxtConfig({
           src: '/icon-192-192.png',
           sizes: '192x192',
           type: 'image/png',
+          purpose: 'any maskable',
         },
         {
           src: '/icon-512-512.png',
           sizes: '512x512',
           type: 'image/png',
+          purpose: 'any maskable',
         },
       ],
     },
