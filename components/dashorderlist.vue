@@ -47,6 +47,15 @@
       <template #cell-payment_method="{ value }">
         <MazBadge :color="value === 'cash' ? 'primary' : 'secondary'">{{ value === 'cash' ? '現金' : '線上錢包' }}</MazBadge>
       </template>
+      <template #select="{ row, selected }">
+        <MazCheckbox
+          size="xs"
+          :disabled="row.checked"
+          :checked="selected"
+          @change="handlechange(selected, row.id)"
+          @click="selected = !selected"
+        />
+      </template>
     </MazTable>
   </div>
 </div>
@@ -79,4 +88,13 @@
   watch(()=> selectedIds.value, () => {
     console.log(computedSelected.value)
   })
+
+  const handlechange = (selected, id) => {
+    if (selected){
+      selectedIds.value.push(id)
+    } else {
+      const index = selectedIds.value.indexOf(id)
+      selectedIds.value.splice(index, 1)
+    }
+  }
 </script>
