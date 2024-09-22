@@ -10,10 +10,12 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     '@pinia-plugin-persistedstate/nuxt',
     '@vueuse/nuxt',
-    '@nuxtjs/seo',
     '@nuxtjs/supabase',
     '@nuxtjs/google-fonts',
     '@vite-pwa/nuxt',
+    '@nuxtjs/robots',
+    '@nuxtjs/sitemap',
+    'nuxt-link-checker',
   ],
   plugins: [
     '~/plugins/mazToaster.js'
@@ -56,5 +58,31 @@ export default defineNuxtConfig({
       Outfit: true,
       'Noto Sans Traditional Chinese': true
     }
+  },
+  pwa: {
+    registerType: 'autoUpdate',
+    manifest: {
+      name: 'CLHS午餐訂餐系統',
+      short_name: 'CLHS Lunch',
+      description: '為學生提供方便快速的午餐訂餐服務',
+      theme_color: '#ffffff',
+      background_color: '#ffffff',
+      display: 'standalone',
+      start_url: '/',
+      icons: [
+        {
+          src: '/icon-192-192.png',
+          sizes: '192x192',
+          type: 'image/png',
+          purpose: 'any maskable',
+        },
+        {
+          src: '/icon-512-512.png',
+          sizes: '512x512',
+          type: 'image/png',
+          purpose: 'any maskable',
+        },
+      ],
+    },
   },
 })
