@@ -1,7 +1,15 @@
 <template>
     <div class="pb-24">
         <div class="container mx-auto md:px-0 px-2 flex flex-col gap-4 overflow-y-auto">
-            <MazCard>
+          <NuxtLink to="/dash/home">
+            <MazBtn>
+              <template #left-icon>
+                <Icon name="material-symbols:arrow-left-alt-rounded" size="1.5rem" />
+              </template>
+              返回總面板
+            </MazBtn>
+          </NuxtLink>
+          <MazCard>
               <div class="grid lg:grid-cols-3 grid-cols-1 gap-4 lg:divide-x lg:divide-y-0 divide-y divide-zinc-700">
                 <div class="p-4">
                   <div class="flex items-center gap-2 text-2xl text-zinc-100">

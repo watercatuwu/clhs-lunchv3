@@ -5,7 +5,7 @@
         </template>
         登入
     </MazBtn>
-    <NuxtLink v-else to="/app/me">
+    <NuxtLink v-else to="/app/home">
         <MazBtn @click="loading=true" :loading="loading" color="secondary">
             <template #left-icon>
                 <Icon name="material-symbols:arrow-circle-right-outline-rounded" size="1.5rem" />
@@ -21,7 +21,7 @@ const toast = useToast()
 const loading = ref(false)
 const supabase = useSupabaseClient()
 const user = useSupabaseUser()
-const redirectUrl = `${window.location.origin}/app/me`
+const redirectUrl = `${window.location.origin}/app/home`
 async function handleLogin() {
     loading.value = true
     const { error } = await supabase.auth.signInWithOAuth({

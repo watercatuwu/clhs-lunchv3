@@ -96,13 +96,14 @@ const { data: pubUser, error: pubError } = await supabase
 
 const paymentMethod = [
     { label: '現金', description: '你要出多少>:(', value: 'cash' },
-    { label: '線上錢包', description: `錢包餘額:$${pubUser.balance}`, value: 'wallet' },
+    { label: '線上錢包', description: `錢包餘額:$${pubUser.balance}($${pubUser.balance-(cartStore.totalPrice-cartStore.discount)})`, value: 'wallet' },
 ]
 
 const selectedMethod = ref('cash')
 
 async function checkout() {
     loading.value = true
+    const discountPrice = cartStore.totalPrice - cartStore.discount
 
     const data = {
         date: dateStore.value,
@@ -110,11 +111,12 @@ async function checkout() {
         class: pubUser.class,
         number: pubUser.number,
         payment_method: selectedMethod.value,
+        price: discountPrice
     }
 
     if (selectedMethod.value === 'wallet') {
-        if (pubUser.balance < (cartStore.totalPrice - cartStore.discount)) {
-            toast.error('錢包餘額不足!窮逼')
+        if (pubUser.balance < (discountPrice)) {
+            toast.error('錢包餘額不足!還敢送出啊冰鳥')
             return
         }
         else {

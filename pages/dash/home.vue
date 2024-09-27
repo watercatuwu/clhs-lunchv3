@@ -14,6 +14,13 @@
                     </NuxtLink>
                 </div>
             </div>
+            <div class="flex justify-center mt-4">
+                <NuxtLink to="/app/home">
+                    <MazBtn size="xl">
+                        返回用戶區
+                    </MazBtn>
+                </NuxtLink>
+            </div>
         </div>
     </div>
 </template>

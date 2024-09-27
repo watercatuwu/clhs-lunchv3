@@ -7,7 +7,7 @@
         <MazCard>
             <div class="flex justify-between items-center">
                 <p class="text-xl text-zinc-100">餘額</p>
-                <p class="text-xl text-white">${{ balenceValue.balance }}</p>
+                <p class="text-xl text-white">${{ balanceValue.balance }}</p>
             </div>
             <template #footer>
                 <div class="flex gap-2 justify-end mb-4">
@@ -39,5 +39,5 @@ const user = useSupabaseUser()
 
 const priceValue = ref(0)
 
-const { data: balenceValue } = await useFetch('/api/user/balance/'+user.value.id)
+const { data: balanceValue } = await useFetch('/api/user/balance/'+user.value.id)
 </script>

@@ -49,7 +49,7 @@ definePageMeta({
   middleware: 'auth'
 });
 
-const colors = ['#09090b', '#f4f4f5']
+const colors = ['#1c04d1', '#f4f4f5']
 const supabase = useSupabaseClient()
 const user = useSupabaseUser()
 const { data: pubUser, error: pubError } = await supabase
