@@ -7,7 +7,7 @@
     <div class="container mx-auto mt-4 h-full md:px-0 px-2 flex flex-col gap-4 overflow-y-auto">
       <VueDatePicker
         v-model="dateValue"
-        :format="DateTime.fromJSDate(dateValue).tolocalestring()"
+        :format="DateTime.fromJSDate(dateValue).toLocaleString()"
         :enable-time-picker="false"
         :min-date="DateTime.fromISO('2022-01-01').toJSDate()"
         :max-date="now.plus({day:1}).endOf('week').toJSDate()"
